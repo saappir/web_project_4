@@ -1,13 +1,13 @@
 let editButton = document.querySelector('.profile__button_type_edit');
 let exitButton = document.querySelector('.popup__button_type_exit');
-let popup = document.querySelector('.popup')
+let popup = document.querySelector('.popup');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__description');
-let formElement = document.querySelector('.popup__form')
+let formElement = document.querySelector('.popup__form');
+let likeButton = document.querySelectorAll('.card__like-button');
 
 function open() {
   popup.classList.remove("popup__hidden");
-
   nameInput.value = profileName.value;
   jobInput.value = profileJob.value;
 }
@@ -33,3 +33,7 @@ function handleFormSubmit(evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
+
+function like() {
+
+}
