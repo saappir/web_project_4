@@ -1,0 +1,7 @@
+.card {
+  max-width: 282px;
+  background-color: #FFFFFF;
+  color: black;
+  border-radius: 10px;
+  box-sizing: border-box;
+}

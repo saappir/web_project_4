@@ -1,0 +1,47 @@
+@import url('../vendor/normalize.css');
+@import url('../vendor/fonts/fonts.css');
+
+@import url('../blocks/page/page.css');
+
+@import url('../blocks/header/header.css');
+@import url('../blocks/header/__logo/header__logo.css');
+
+@import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__button/profile__button.css');
+@import url('../blocks/profile/__button/_type/_add/profile__button_type_add.css');
+@import url('../blocks/profile/__button/_type/_edit/profile__button_type_edit.css');
+@import url('../blocks/profile/__name/profile__name.css');
+@import url('../blocks/profile/__description/profile__description.css');
+@import url('../blocks/profile/__image/profile__image.css');
+@import url('../blocks/profile/__inner/profile__inner.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__button/profile__button--hover.css');
+
+@import url('../blocks/cards/cards.css');
+
+@import url('../blocks/card/card.css');
+@import url('../blocks/card/__title/card__title.css');
+@import url('../blocks/card/__image/card__image.css');
+@import url('../blocks/card/__like-button/card__like-button.css');
+@import url('../blocks/card/__like-button/card__like-button--disabled.css');
+@import url('../blocks/card/__like-button/card__like-button--active.css');
+@import url('../blocks/card/__like-button/card__like-button--hover.css');
+@import url('../blocks/card/__inner/card__inner.css');
+
+@import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/__container/popup__container.css');
+@import url('../blocks/popup/__form/popup__form.css');
+@import url('../blocks/popup/__input/popup__input.css');
+@import url('../blocks/popup/__input/_content/_description/popup__input_content_description.css');
+@import url('../blocks/popup/__input/_content/_name/popup__input_content_name.css');
+@import url('../blocks/popup/__title/popup__title.css');
+@import url('../blocks/popup/__button/_type/_submit/popup__button_type_submit.css');
+@import url('../blocks/popup/__button/_type/_submit/popup__button_type_submit--hover.css');
+@import url('../blocks/popup/__button/_type/_exit/popup__button_type_exit.css');
+@import url('../blocks/popup/__hidden/popup__hidden.css');
+@import url('../blocks/popup/__button/popup__button--hover.css');
+
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');
+
+

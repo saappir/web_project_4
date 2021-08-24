@@ -1,0 +1,9 @@
+.popup__button_type_submit {
+  background-color: black;
+  color: white;
+  max-height: 50px;
+  font-size: 18px;
+  line-height: 22px;
+  padding-top: 13.66px;
+  padding-bottom: 18.49px;
+}
