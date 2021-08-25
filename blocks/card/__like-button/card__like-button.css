@@ -6,3 +6,7 @@
   border: none;
   align-self: center;
 }
+
+.card__like-button:hover {
+  opacity: 0.5;
+}
