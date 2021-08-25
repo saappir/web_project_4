@@ -20,7 +20,6 @@ function close() {
 
 exitButton.addEventListener("click", close);
 
-
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
@@ -33,7 +32,3 @@ function handleFormSubmit(evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
-
-function like() {
-
-}
