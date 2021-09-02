@@ -2,11 +2,15 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   margin-bottom: 68px;
   gap: 20px 17px;
+  max-width: 100%;
+  width: 880px;
 }
 
-.card::after {
+.cards::after {
   content: "";
   flex: auto;
 }
@@ -14,11 +18,18 @@
 @media screen and (max-width: 1024px) {
   .cards {
     padding: 0 19px;
+    width: 581px;
   }
 }
 
 @media screen and (max-width: 880px) {
   .cards {
     margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards {
+    width: 282px;
   }
 }
