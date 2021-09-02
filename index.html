@@ -12,16 +12,29 @@
   <header class="header">
     <img src="images/logo/logo.svg" alt="around the US logo" class="header__logo">
   </header>
-  <section class="popup popup_hidden">
+  <section class="popup popup__edit popup_hidden">
     <div class="popup__container">
       <button aria-label="exit" type="button" class="popup__exit-button button-cursor"></button>
-      <form name="popup__form" class="popup__form">
+      <form name="popup__form" class="popup__form popup__edit-form">
         <h2 class="popup__title">Edit profile</h2>
         <input class="popup__input popup__input_content_name" type="text" id="popup__input_name"
           name="popup__input_name" placeholder="Name" value="">
         <input class="popup__input popup__input_content_description" type="text" id="popup__description"
-          name="popup__description" placeholder="Job" value="">
+          name="popup__input" placeholder="Job" value="">
         <button type="submit" class="popup__submit-button button-cursor">Save</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup__add popup_hidden">
+    <div class="popup__container">
+      <button aria-label="exit" type="button" class="popup__exit-button button-cursor"></button>
+      <form name="popup__form" class="popup__form popup__add-form">
+        <h2 class="popup__title">New place</h2>
+        <input class="popup__input popup__input_content_title" type="text" id="popup__input_title" name="popup__input"
+          placeholder="Title" value="">
+        <input class="popup__input popup__input_content_link" type="url" id="popup__input_image" name="popup__input"
+          placeholder="Image link" value="">
+        <button type="submit" class="popup__submit-button button-cursor">Create</button>
       </form>
     </div>
   </section>
@@ -39,59 +52,30 @@
       class="profile__button profile__button-hover profile__button_type_add button-cursor"></button>
   </section>
   <section class="cards">
-    <article class="card">
-      <img src="images/image__1.jpg" alt="Yosemite Valley lake in the forest at sunrise" class="card__image">
-      <div class="card__inner">
-        <h2 class="card__title">Yosemite Valley</h2>
-        <button aria-label="like" type="button"
-          class="card__like-button card__like-button-disabled button-cursor"></button>
-      </div>
-    </article>
-    <article class="card">
-      <img src="images/image__2.jpg" alt="Lake Louis lansdscape with mountains" class="card__image">
-      <div class="card__inner">
-        <h2 class="card__title">Lake Louise</h2>
-        <button aria-label="like" type="button"
-          class="card__like-button card__like-button-disabled button-cursor"></button>
-      </div>
-    </article>
-    <article class="card">
-      <img src="images/image__3.jpg" alt="Bald Mountains at sunset" class="card__image">
-      <div class="card__inner">
-        <h2 class="card__title">Bald Mountains</h2>
-        <button aria-label="like" type="button"
-          class="card__like-button card__like-button-disabled button-cursor"></button>
-      </div>
-    </article>
-    <article class="card">
-      <img src="images/image__4.jpg" alt="Latemar night skies full of stars" class="card__image">
-      <div class="card__inner">
-        <h2 class="card__title">Latemar</h2>
-        <button aria-label="like" type="button"
-          class="card__like-button card__like-button-disabled button-cursor"></button>
-      </div>
-    </article>
-    <article class="card">
-      <img src="images/image__5.jpg" alt="vanoise park landscape with mountains at sunrise" class="card__image">
-      <div class="card__inner">
-        <h2 class="card__title">Vanoise National Park</h2>
-        <button aria-label="like" type="button"
-          class="card__like-button card__like-button-disabled button-cursor"></button>
-      </div>
-    </article>
-    <article class="card">
-      <img src="images/image__6.jpg" alt="Lago sea with mountains and a boat" class="card__image">
-      <div class="card__inner">
-        <h2 class="card__title">Lago di Braies</h2>
-        <button aria-label="like" type="button"
-          class="card__like-button card__like-button-disabled button-cursor"></button>
-      </div>
-    </article>
+    <template id="cardTemplate">
+      <article class="card">
+        <button aria-label="delete" type="button" class="card__delete-button button-cursor"></button>
+        <img src="" alt="" class="card__image button-cursor">
+        <div class="card__inner">
+          <h2 class="card__title"></h2>
+          <button aria-label="like" type="button" class="card__like-button button-cursor"></button>
+        </div>
+      </article>
+    </template>
+  </section>
+  <section class="popup popup__image-container popup_hidden">
+    <div class="popup__container">
+      <button aria-label="exit" type="button" class="popup__exit-button popup__exit-image button-cursor"></button>
+      <figure>
+        <img class="popup__fig-image" src="" alt="">
+        <figcaption class="popup__fig-caption"></figcaption>
+      </figure>
+    </div>
   </section>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2021 Around The U.S.</p>
   </footer>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>

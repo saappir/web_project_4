@@ -1,0 +1,8 @@
+@media screen and (max-width: 580px) {
+  .popup__exit-image {
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: -15px;
+  }
+}
