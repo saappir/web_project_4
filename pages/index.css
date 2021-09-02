@@ -32,6 +32,7 @@
 @import url('../blocks/popup/_hidden/popup_hidden.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
-@import url('../blocks/popup/__fig-image/popup__fig-image.css');
-@import url('../blocks/popup/__fig-caption/popup__fig-caption.css');
+@import url('../blocks/popup/__figure/popup__figure.css');
+@import url('../blocks/popup/__figure-image/popup__figure-image.css');
+@import url('../blocks/popup/__figure-caption/popup__figure-caption.css');
 @import url('../blocks/popup/__exit-image/popup__exit-image.css');

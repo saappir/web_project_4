@@ -25,5 +25,4 @@ const initialCards = [
   }
 ];
 
-const reversed = initialCards.reverse();
-export {reversed};
+export { initialCards };
