@@ -1,14 +1,14 @@
 const showError = (form, input, errorMessage) => {
-  const errorElement = form.querySelector(`.${input.id}-error`);
+  const errorElement = form.querySelector(`.${input.id}_error`);
   input.classList.add('popup__input_type_error');
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_state_visible');
+  errorElement.classList.add('popup__input_error_state_visible');
 };
 
 const hideError = (form, input) => {
-  const errorElement = form.querySelector(`.${input.id}-error`);
+  const errorElement = form.querySelector(`.${input.id}_error`);
   input.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error_state_visible');
+  errorElement.classList.remove('popup__input_error_state_visible');
   errorElement.textContent = '';
 };
 
@@ -72,8 +72,8 @@ enableValidation({
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_state_inactive',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input-error_state_visible'
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__input_error_state_visible'
 });
 
 export { resetValidation };
