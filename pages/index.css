@@ -36,3 +36,8 @@
 @import url('../blocks/popup/__figure-image/popup__figure-image.css');
 @import url('../blocks/popup/__figure-caption/popup__figure-caption.css');
 @import url('../blocks/popup/__exit-image/popup__exit-image.css');
+@import url('../blocks/popup/__input-error/popup__input-error.css');
+@import url('../blocks/popup/__input/_type/popup__input_type_error.css');
+@import url('../blocks/popup/__submit-button/_state/popup__submit-button_state_inactive.css');
+@import url('../blocks/popup/__input-error/_state/popup__input-error_state_visible.css');
+@import url('../blocks/popup/__input-label/popup__input-label.css');

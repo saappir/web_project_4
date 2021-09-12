@@ -6,6 +6,8 @@
   line-height: 22px;
   padding-top: 13.66px;
   padding-bottom: 18.49px;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 
 .popup__submit-button:hover {
