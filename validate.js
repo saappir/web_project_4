@@ -1,25 +1,14 @@
 const showError = (form, input, errorMessage) => {
-<<<<<<< HEAD
   const errorElement = form.querySelector(`.${input.id}-error`);
   input.classList.add('popup__input_type-error');
-=======
-  const errorElement = form.querySelector(`.${input.id}_error`);
-  input.classList.add('popup__input_type_error');
->>>>>>> c2f3faf98f98848336215fcc9661e95bbe26c523
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input_error_state_visible');
+  errorElement.classList.add('popup__input-error_state_visible');
 };
 
 const hideError = (form, input) => {
-<<<<<<< HEAD
   const errorElement = form.querySelector(`.${input.id}-error`);
   input.classList.remove('popup__input_type-error');
   errorElement.classList.remove('popup__input-error_state_visible');
-=======
-  const errorElement = form.querySelector(`.${input.id}_error`);
-  input.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input_error_state_visible');
->>>>>>> c2f3faf98f98848336215fcc9661e95bbe26c523
   errorElement.textContent = '';
 };
 
@@ -83,8 +72,8 @@ enableValidation({
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_state_inactive',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__input_error_state_visible'
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input-error_state_visible'
 });
 
 export { resetValidation };
