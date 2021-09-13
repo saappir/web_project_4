@@ -1,5 +1,6 @@
 import { initialCards } from './initialCards.js';
 import { resetValidation } from './validate.js';
+import { config } from './validate.js';
 
 const editButton = document.querySelector('.profile__button_type_edit');
 const addButton = document.querySelector('.profile__button_type_add');
@@ -18,18 +19,22 @@ const cardTemplate = document.querySelector('#cardTemplate');
 const addFormElement = document.querySelector('.popup__add-form');
 const titleInput = addFormElement.querySelector('.popup__input_content_title');
 const imageInput = addFormElement.querySelector('.popup__input_content_link');
+let openedPopup = null;
 
 /** Function open popup */
 const openPopup = (element) => {
+  openedPopup = element;
   element.classList.remove('popup_hidden');
-  element.addEventListener('keydown', keyHandler);
+  document.addEventListener('keydown', keyHandler);
   element.addEventListener('click', exitPopupOverlay);
+  addExitEventListener(element);
 };
 
 /** Function close popup */
 const closePopup = (element) => {
   element.classList.add('popup_hidden');
-  resetValidation(element);
+  document.removeEventListener('keydown', keyHandler);
+  document.removeEventListener('click', exitPopupOverlay);
 };
 
 /** Function popup exit button*/
@@ -43,19 +48,16 @@ const addExitEventListener = (popupElement) => {
 /** Function like */
 const like = (element) => { element.classList.toggle('card__like-button_state_active'); };
 
-/** Function append card */
-const renderCard = (card) => { cardsContainer.prepend(card); };
-
 /** Exit when esc is clicked */
 const keyHandler = (evt) => {
   if (evt.key === 'Escape') {
-    closePopup(evt.currentTarget);
+    closePopup(openedPopup);
   }
 };
 
 /** Exit when overlay is clicked */
 const exitPopupOverlay = (evt) => {
-  if (!evt.target.closest('.popup__form')) {
+  if (evt.currentTarget === evt.target) {
     closePopup(evt.currentTarget);
   }
 };
@@ -63,12 +65,12 @@ const exitPopupOverlay = (evt) => {
 /** Create place function */
 const createCard = (data) => {
   const cardElement = cardTemplate.content.cloneNode(true);
-  let card = cardElement.querySelector('.card');
+  let card = cardElement.querySelector('.card'); // reassigned null if deleted //
   const cardTitle = cardElement.querySelector('.card__title');
   const cardImage = cardElement.querySelector('.card__image');
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
-  cardImage.alt = cardTitle.textContent;
+  cardImage.alt = data.name;
   const likeButton = card.querySelector('.card__like-button');
   likeButton.addEventListener('click', function () {
     like(likeButton);
@@ -83,18 +85,19 @@ const createCard = (data) => {
     figImage.src = cardImage.src;
     figImage.alt = cardTitle.textContent;
     figCaption.textContent = cardTitle.textContent;
-    addExitEventListener(imagePopup);
   });
-  closePopup(imagePopup);
-  renderCard(card);
+  return card;
 };
+
+/** Function append card */
+const renderCard = (card) => { cardsContainer.prepend(card); };
 
 /** Edit profile button */
 editButton.addEventListener('click', function () {
   openPopup(editPopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  addExitEventListener(editPopup);
+  resetValidation(editPopup, config);
 });
 
 /** Edit profile form */
@@ -108,20 +111,19 @@ editFormElement.addEventListener('submit', function (evt) {
 /** Add place button */
 addButton.addEventListener('click', function () {
   openPopup(addPopup);
-  addExitEventListener(addPopup);
+  resetValidation(addPopup, config);
 });
 
 /** Add place form  */
 addFormElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  let inputArray = [{ name: titleInput.value, link: imageInput.value }];
-  inputArray.forEach(element => {
-    createCard(element);
-  });
+  const element = { name: titleInput.value, link: imageInput.value };
+  renderCard(createCard(element));
   closePopup(addPopup);
+  addFormElement.reset();
 });
 
 /** Preload six cards */
 initialCards.forEach(element => {
-  createCard(element);
+  renderCard(createCard(element));
 });
