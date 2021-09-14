@@ -84,7 +84,6 @@ const createCard = (data) => {
     figImage.src = cardImage.src;
     figImage.alt = cardTitle.textContent;
     figCaption.textContent = cardTitle.textContent;
-    addExitEventListener(imagePopup);
   });
   return card;
 };
@@ -97,7 +96,6 @@ editButton.addEventListener('click', function () {
   openPopup(editPopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  addExitEventListener(editPopup);
   resetValidation(editPopup, config);
 });
 
@@ -113,8 +111,6 @@ editFormElement.addEventListener('submit', function (evt) {
 addButton.addEventListener('click', function () {
   openPopup(addPopup);
   resetValidation(addPopup, config);
-  addExitEventListener(addPopup);
-
 });
 
 /** Add place form  */
@@ -130,3 +126,7 @@ addFormElement.addEventListener('submit', function (evt) {
 initialCards.forEach(element => {
   renderCard(createCard(element));
 });
+
+addExitEventListener(editPopup);
+addExitEventListener(imagePopup);
+addExitEventListener(addPopup);
