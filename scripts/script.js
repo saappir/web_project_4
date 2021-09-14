@@ -27,14 +27,13 @@ const openPopup = (element) => {
   element.classList.remove('popup_hidden');
   document.addEventListener('keydown', keyHandler);
   element.addEventListener('click', exitPopupOverlay);
-  addExitEventListener(element);
 };
 
 /** Function close popup */
 const closePopup = (element) => {
   element.classList.add('popup_hidden');
   document.removeEventListener('keydown', keyHandler);
-  document.removeEventListener('click', exitPopupOverlay);
+  element.removeEventListener('click', exitPopupOverlay);
 };
 
 /** Function popup exit button*/
@@ -85,6 +84,7 @@ const createCard = (data) => {
     figImage.src = cardImage.src;
     figImage.alt = cardTitle.textContent;
     figCaption.textContent = cardTitle.textContent;
+    addExitEventListener(imagePopup);
   });
   return card;
 };
@@ -97,6 +97,7 @@ editButton.addEventListener('click', function () {
   openPopup(editPopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  addExitEventListener(editPopup);
   resetValidation(editPopup, config);
 });
 
@@ -112,6 +113,8 @@ editFormElement.addEventListener('submit', function (evt) {
 addButton.addEventListener('click', function () {
   openPopup(addPopup);
   resetValidation(addPopup, config);
+  addExitEventListener(addPopup);
+
 });
 
 /** Add place form  */
