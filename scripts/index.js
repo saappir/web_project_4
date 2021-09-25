@@ -1,6 +1,7 @@
 import { initialCards } from './initialCards.js';
-import { Card } from './card.js';
+import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { openPopup, closePopup } from './utils.js';
 
 const editButton = document.querySelector('.profile__button_type_edit');
 const addButton = document.querySelector('.profile__button_type_add');
@@ -16,22 +17,6 @@ const cardsContainer = document.querySelector('.cards');
 const addFormElement = document.querySelector('.popup__add-form');
 const titleInput = addFormElement.querySelector('.popup__input_content_title');
 const imageInput = addFormElement.querySelector('.popup__input_content_link');
-let openedPopup = null;
-
-/** Function open popup */
-const openPopup = (element) => {
-  openedPopup = element;
-  element.classList.remove('popup_hidden');
-  document.addEventListener('keydown', keyHandler);
-  element.addEventListener('click', exitPopupOverlay);
-};
-
-/** Function close popup */
-const closePopup = (element) => {
-  element.classList.add('popup_hidden');
-  document.removeEventListener('keydown', keyHandler);
-  element.removeEventListener('click', exitPopupOverlay);
-};
 
 /** Function popup exit button*/
 const addExitEventListener = (popupElement) => {
@@ -40,23 +25,6 @@ const addExitEventListener = (popupElement) => {
     closePopup(popupElement);
   });
 };
-
-/** Exit when esc is clicked */
-const keyHandler = (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup(openedPopup);
-  }
-};
-
-/** Exit when overlay is clicked */
-const exitPopupOverlay = (evt) => {
-  if (evt.currentTarget === evt.target) {
-    closePopup(evt.currentTarget);
-  }
-};
-
-/** Function append card */
-const renderCard = (card) => { cardsContainer.prepend(card); };
 
 /** Edit profile button */
 editButton.addEventListener('click', function () {
@@ -80,6 +48,9 @@ addButton.addEventListener('click', function () {
   addFormElement.reset();
   addFormValidator.resetValidation();
 });
+
+/** Function append card */
+const renderCard = (card) => { cardsContainer.prepend(card); };
 
 /** Add place form  */
 addFormElement.addEventListener('submit', function (evt) {
@@ -115,5 +86,3 @@ const addFormValidator = new FormValidator(settings, addFormElement);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-
-export { openPopup };

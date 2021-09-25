@@ -4,7 +4,7 @@ class FormValidator {
     this._settings = settings;
   }
 
-  _showError(input, errorMessage) {
+  _showError = (input, errorMessage) => {
     const { inputErrorClass, errorClass } = this._settings;
     const errorElement = this._form.querySelector(`.${input.id}-error`);
     input.classList.add(inputErrorClass);
@@ -12,7 +12,7 @@ class FormValidator {
     errorElement.classList.add(errorClass);
   }
 
-  _hideError(input) {
+  _hideError = (input) => {
     const { inputErrorClass, errorClass } = this._settings;
     const errorElement = this._form.querySelector(`.${input.id}-error`);
     input.classList.remove(inputErrorClass);
@@ -20,7 +20,7 @@ class FormValidator {
     errorElement.textContent = '';
   }
 
-  _checkValidation(input) {
+  _checkValidation = (input) => {
     if (!input.validity.valid) {
       this._showError(input, input.validationMessage);
     } else {
@@ -28,23 +28,29 @@ class FormValidator {
     }
   }
 
-  _hasInvalidInput() { this.inputList.some(input => !input.validity.valid); }
+  _hasInvalidInput = () => {
+    return this.inputList.some((input) => {
+      return !input.validity.valid;
+    });
+  };
 
-  _toggleButtonState() {
+  _toggleButtonState = () => {
     const { inactiveButtonClass, submitButtonSelector } = this._settings;
     const button = this._form.querySelector(submitButtonSelector);
 
     if (this._hasInvalidInput()) {
       button.classList.add(inactiveButtonClass);
-      button.setAttribute('disabled', '');
+      button.classList.remove('button-cursor');
+      button.setAttribute('disabled', true);
     }
     else {
       button.classList.remove(inactiveButtonClass);
-      button.removeAttribute('disabled', '');
+      button.classList.add('button-cursor')
+      button.removeAttribute('disabled');
     }
   }
 
-  _setListeners() {
+  _setListeners = () => {
     const { inputSelector } = this._settings;
     this.inputList = Array.from(this._form.querySelectorAll(inputSelector));
     this._toggleButtonState();
@@ -56,7 +62,7 @@ class FormValidator {
     });
   }
 
-  enableValidation() {
+  enableValidation = () => {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
@@ -65,9 +71,7 @@ class FormValidator {
 
   resetValidation() {
     this._toggleButtonState();
-    this.inputList.forEach((input) => {
-      this._hideError(input);
-    });
+    this.inputList.forEach(this._hideError);
   }
 }
 

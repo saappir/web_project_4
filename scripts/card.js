@@ -1,7 +1,7 @@
-import { openPopup } from './index.js';
+import { openPopup } from './utils.js';
 const imagePopup = document.querySelector('.popup_type_image');
-const figImage = document.querySelector('.popup__figure-image');
-const figCaption = document.querySelector('.popup__figure-caption');
+const figureImage = document.querySelector('.popup__figure-image');
+const figureCaption = document.querySelector('.popup__figure-caption');
 
 class Card {
   constructor(data, cardSelector) {
@@ -11,7 +11,7 @@ class Card {
   }
 
   _getTemplate() {
-    let cardElement = document
+    const cardElement = document
       .querySelector('#cardTemplate')
       .content
       .querySelector('.card')
@@ -22,51 +22,48 @@ class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setListeners();
-    this._element.querySelector('.card__title').textContent = this._name;
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = this._name;
+    const cardImage = this._element.querySelector('.card__image');
+    const cardTitle = this._element.querySelector('.card__title');
+    cardTitle.textContent = this._name;
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
     return this._element;
   }
 
   _generatePopup() {
-    figImage.src = this._link;
-    figImage.alt = this._name;
-    figCaption.textContent = this._name;
+    figureImage.src = this._link;
+    figureImage.alt = this._name;
+    figureCaption.textContent = this._name;
   }
 
   _setListeners() {
     this._element.querySelector('.card__image')
-      .addEventListener('click', () => {
-        this._handleOpenPopup();
-      });
+      .addEventListener('click', this._handleOpenPopup);
 
     this._element.querySelector('.card__like-button')
-      .addEventListener('click', () => {
-        this._likeCard();
-      });
+      .addEventListener('click', this._likeCard);
 
     this._element.querySelector('.card__delete-button')
-      .addEventListener('click', () => {
-        this._deleteCard();
-      });
+      .addEventListener('click', this._deleteCard);
   }
 
-  _handleOpenPopup() {
+  _handleOpenPopup = () => {
     openPopup(imagePopup);
-    figImage.src = this._link;
-    figImage.alt = this._name;
-    figCaption.textContent = this._name;
+    figureImage.src = this._link;
+    figureImage.alt = this._name;
+    figureCaption.textContent = this._name;
   }
 
-  _likeCard() {
+  _likeCard = () => {
     this._element.querySelector('.card__like-button')
       .classList.toggle('card__like-button_state_active');
   }
 
-  _deleteCard() {
+  _deleteCard = () => {
     this._element.remove();
     this._element = null;
   }
+
 }
 
 export { Card };

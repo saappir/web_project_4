@@ -1,20 +1,20 @@
-# Project 4: Around The U.S.
+# Project 7: Around The U.S.
 
 ### Overview
 
-* Figma
-* Images
+This project exemplifies:
 
-**Figma**
+* BEM file structure
+* Live HTML forms validation
+* Creation of multiple cards via JavaScript ES6 classes
+* Various buttons functionality
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+## Languages
 
-**Images**
+HTML, CSS & Javascript
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+## GitHub Pages
 
-Have fun with JavaScript!
+This project is hosted on GitHub Pages,
+[here](https://saappir.github.io/web_project_4/)
 
-**GitHub Pages**
-
-[Project Page](https://saappir.github.io/web_project_4/)
