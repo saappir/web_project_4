@@ -1,6 +1,6 @@
 import { initialCards } from './initialCards.js';
-import { resetValidation } from './validate.js';
-import { config } from './validate.js';
+import { Card } from './card.js';
+import { FormValidator } from './FormValidator.js';
 
 const editButton = document.querySelector('.profile__button_type_edit');
 const addButton = document.querySelector('.profile__button_type_add');
@@ -13,9 +13,6 @@ const editFormElement = document.querySelector('.popup__edit-form');
 const nameInput = editFormElement.querySelector('.popup__input_content_name');
 const jobInput = editFormElement.querySelector('.popup__input_content_description');
 const cardsContainer = document.querySelector('.cards');
-const figImage = document.querySelector('.popup__figure-image');
-const figCaption = document.querySelector('.popup__figure-caption');
-const cardTemplate = document.querySelector('#cardTemplate');
 const addFormElement = document.querySelector('.popup__add-form');
 const titleInput = addFormElement.querySelector('.popup__input_content_title');
 const imageInput = addFormElement.querySelector('.popup__input_content_link');
@@ -44,9 +41,6 @@ const addExitEventListener = (popupElement) => {
   });
 };
 
-/** Function like */
-const like = (element) => { element.classList.toggle('card__like-button_state_active'); };
-
 /** Exit when esc is clicked */
 const keyHandler = (evt) => {
   if (evt.key === 'Escape') {
@@ -61,33 +55,6 @@ const exitPopupOverlay = (evt) => {
   }
 };
 
-/** Create place function */
-const createCard = (data) => {
-  const cardElement = cardTemplate.content.cloneNode(true);
-  let card = cardElement.querySelector('.card'); // reassigned null if deleted //
-  const cardTitle = cardElement.querySelector('.card__title');
-  const cardImage = cardElement.querySelector('.card__image');
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  const likeButton = card.querySelector('.card__like-button');
-  likeButton.addEventListener('click', function () {
-    like(likeButton);
-  });
-  const deleteButton = card.querySelector('.card__delete-button');
-  deleteButton.addEventListener('click', function () {
-    card.remove();
-    card = null;
-  });
-  cardImage.addEventListener('click', function () {
-    openPopup(imagePopup);
-    figImage.src = cardImage.src;
-    figImage.alt = cardTitle.textContent;
-    figCaption.textContent = cardTitle.textContent;
-  });
-  return card;
-};
-
 /** Function append card */
 const renderCard = (card) => { cardsContainer.prepend(card); };
 
@@ -96,7 +63,7 @@ editButton.addEventListener('click', function () {
   openPopup(editPopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  resetValidation(editPopup, config);
+  editFormValidator.resetValidation();
 });
 
 /** Edit profile form */
@@ -110,23 +77,43 @@ editFormElement.addEventListener('submit', function (evt) {
 /** Add place button */
 addButton.addEventListener('click', function () {
   openPopup(addPopup);
-  resetValidation(addPopup, config);
+  addFormElement.reset();
+  addFormValidator.resetValidation();
 });
 
 /** Add place form  */
 addFormElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
   const element = { name: titleInput.value, link: imageInput.value };
-  renderCard(createCard(element));
+  const card = new Card(element);
+  renderCard(card.generateCard(element));
   closePopup(addPopup);
-  addFormElement.reset();
+
 });
 
 /** Preload six cards */
 initialCards.forEach(element => {
-  renderCard(createCard(element));
+  const card = new Card(element);
+  renderCard(card.generateCard(element));
 });
 
 addExitEventListener(editPopup);
 addExitEventListener(imagePopup);
 addExitEventListener(addPopup);
+
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_state_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_state_visible'
+};
+
+const editFormValidator = new FormValidator(settings, editFormElement);
+const addFormValidator = new FormValidator(settings, addFormElement);
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
+export { openPopup };
