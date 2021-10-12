@@ -1,7 +1,7 @@
-class FormValidator {
+export default class FormValidator {
   constructor(settings, form) {
-    this._form = form;
     this._settings = settings;
+    this._form = form
   }
 
   _showError = (input, errorMessage) => {
@@ -45,7 +45,7 @@ class FormValidator {
     }
     else {
       button.classList.remove(inactiveButtonClass);
-      button.classList.add('button-cursor')
+      button.classList.add('button-cursor');
       button.removeAttribute('disabled');
     }
   }
@@ -74,5 +74,3 @@ class FormValidator {
     this.inputList.forEach(this._hideError);
   }
 }
-
-export { FormValidator };
