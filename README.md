@@ -4,7 +4,7 @@
 
 This project exemplifies:
 
-* BEM file structure
+* BEM file structure and class naming
 * Live HTML forms validation
 * Creation of multiple cards via JavaScript ES6 classes
 * Various buttons functionality
