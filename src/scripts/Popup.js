@@ -19,15 +19,15 @@ export class Popup {
 
   open() {
     open(this._popupElement)
+    document.addEventListener('keydown', this._handleEscClose);
   };
 
   close() {
     close(this._popupElement)
+    document.removeEventListener('keydown', this._handleEscClose);
   };
 
-
   setEventListeners() {
-    document.addEventListener('keydown', this._handleEscClose);
     this._popupElement.addEventListener('click', this._handleRemoteClick);
     this._popupElement.querySelector('.popup__exit-button')
       .addEventListener('click', () => this.close());

@@ -1,12 +1,12 @@
-import "./styles/index.css";
-import { initialCards } from './scripts/initialCards.js';
-import Card from './scripts/Card.js';
-import FormValidator from './scripts/FormValidator.js';
-import { PopupWithForm } from './scripts/PopupWithForm.js';
-import { PopupWithImage } from './scripts/PopupWithImage.js';
-import { Section } from './scripts/Section.js';
-import { UserInfo } from './scripts/UserInfo.js';
-import { addButton, editButton, settings, nameInput, jobInput, editFormElement, addFormElement } from './scripts/constants.js';
+import "./index.css";
+import { initialCards } from '../scripts/initialCards.js';
+import Card from '../scripts/Card.js';
+import FormValidator from '../scripts/FormValidator.js';
+import { PopupWithForm } from '../scripts/PopupWithForm.js';
+import { PopupWithImage } from '../scripts/PopupWithImage.js';
+import { Section } from '../scripts/Section.js';
+import { UserInfo } from '../scripts/UserInfo.js';
+import { addButton, editButton, settings, nameInput, jobInput, editFormElement, addFormElement } from '../scripts/constants.js';
 
 const userInfo = new UserInfo('.profile__name', '.profile__description');
 
