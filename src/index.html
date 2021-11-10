@@ -22,7 +22,7 @@
           <span class="popup__input-error input-name-error"></span>
         </label>
         <label class="popup__input-label">
-          <input class="popup__input popup__input_content_description" type="text" name="job" id="input-description"
+          <input class="popup__input popup__input_content_description" type="text" name="about" id="input-description"
             placeholder="Job" value="" required minlength="2" maxlength="200">
           <span class="popup__input-error input-description-error"></span>
         </label>
@@ -50,37 +50,66 @@
     </div>
   </section>
   <section class="profile">
-    <img src="<%=require('./images/image.jpg')%>" alt="Jacques Cousteau in a red beanie" class="profile__image">
+    <div class="profile__image-container">
+      <img src="" alt="" class="profile__image">
+      <button class="profile__button profile__button_type_image"></button>
+    </div>
     <div class="profile__info">
       <div class="profile__inner">
-        <h1 class="profile__name">Jacques Cousteau</h1>
+        <h1 class="profile__name"></h1>
         <button aria-label="edit" type="button"
-          class="profile__button profile__button-hover profile__button_type_edit  "></button>
+          class="profile__button profile__button-hover profile__button_type_edit"></button>
       </div>
-      <p class="profile__description">Explorer</p>
+      <p class="profile__description"></p>
     </div>
     <button aria-label="add" type="button"
-      class="profile__button profile__button-hover profile__button_type_add  "></button>
+      class="profile__button profile__button-hover profile__button_type_add"></button>
   </section>
   <section class="cards">
     <template id="cardTemplate">
       <article class="card">
-        <button aria-label="delete" type="button" class="card__delete-button  "></button>
-        <img src="//:0" alt="//:0" class="card__image  ">
+        <button aria-label="delete" type="button" class="card__delete-button"></button>
+        <img src="#" alt="#" class="card__image">
         <div class="card__inner">
           <h2 class="card__title"></h2>
-          <button aria-label="like" type="button" class="card__like-button  "></button>
+          <div class="card__likes-container">
+            <button aria-label="like" type="button" class="card__like-button"></button>
+            <span class="card__likes-count"></span>
+          </div>
         </div>
       </article>
     </template>
   </section>
   <section class="popup popup_type_image popup_hidden">
     <div class="popup__container">
-      <button aria-label="exit" type="button" class="popup__exit-button popup__exit-image  "></button>
+      <button aria-label="exit" type="button" class="popup__exit-button popup__exit-image"></button>
       <figure class="popup__figure">
         <img class="popup__figure-image" src="#" alt="//:0">
         <figcaption class="popup__figure-caption"></figcaption>
       </figure>
+    </div>
+  </section>
+  <section class="popup popup_type_delete popup_hidden">
+    <div class="popup__container">
+      <button aria-label="exit" type="button" class="popup__exit-button popup__exit-image"></button>
+      <form class="popup__form popup__image-form">
+        <h2 class="popup__title">Are you sure?</h2>
+        <button type="submit" class="popup__submit-button">Yes</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_type_avatar popup_hidden">
+    <div class="popup__container">
+      <button aria-label="exit" type="button" class="popup__exit-button popup__exit-image"></button>
+      <form class="popup__form popup__profile-image">
+        <h2 class="popup__title">Change profile picture</h2>
+        <label class="popup__input-label">
+          <input class="popup__input popup__input_content_profile-image" type="url" name="link" id="input-avatar"
+            placeholder="Image link" value="" required>
+          <span class="popup__input-error input-avatar-error"></span>
+        </label>
+        <button type="submit" class="popup__submit-button">Save</button>
+      </form>
     </div>
   </section>
   <footer class="footer">

@@ -2,9 +2,7 @@
   background: url('../../../images/icons/heart.svg') no-repeat;
   width: 21px;
   height: 19px;
-  margin-left: auto;
   border: none;
-  align-self: center;
 }
 
 .card__like-button:hover {
