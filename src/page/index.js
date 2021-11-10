@@ -1,14 +1,14 @@
-import "./index.css";
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
-import { PopupWithForm } from '../scripts/PopupWithForm.js';
-import { PopupWithImage } from '../scripts/PopupWithImage.js';
-import { PopupWithSubmit } from '../scripts/PopupWithSubmit.js';
-import { Section } from '../scripts/Section.js';
-import { UserInfo } from '../scripts/UserInfo.js';
-import { addButton, editButton, settings, nameInput, jobInput, editFormElement, addFormElement, avatarFormElement, profileImageInput, changeImageButton } from '../scripts/constants.js';
-import { api } from "../scripts/Api.js";
-import { renderLoading } from "../scripts/utils.js";
+import './index.css';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithSubmit } from '../components/PopupWithSubmit.js';
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { addButton, editButton, settings, nameInput, jobInput, editFormElement, addFormElement, avatarFormElement, profileImageInput, changeImageButton } from '../utils/constants.js';
+import { api } from "../components/Api.js";
+import { renderLoading } from "../utils/utils.js";
 let userId
 
 Promise.all([api.getInitialCards(), api.getUserinfo()])

@@ -1,4 +1,4 @@
-import { open, close } from "./utils.js"
+import { open, close } from "../utils/utils.js"
 
 export class Popup {
   constructor(popupSelector) {
