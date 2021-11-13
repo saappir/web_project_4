@@ -1,5 +1,3 @@
-import { open, close } from "../utils/utils.js"
-
 export class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
@@ -18,12 +16,12 @@ export class Popup {
   };
 
   open() {
-    open(this._popupElement)
+    this._popupElement.classList.remove('popup_hidden');
     document.addEventListener('keydown', this._handleEscClose);
   };
 
   close() {
-    close(this._popupElement)
+    this._popupElement.classList.add('popup_hidden');
     document.removeEventListener('keydown', this._handleEscClose);
   };
 

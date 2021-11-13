@@ -4,7 +4,6 @@ export const nameInput = document.querySelector('.popup__input_content_name');
 export const jobInput = document.querySelector('.popup__input_content_description');
 export const editFormElement = document.querySelector('.popup__edit-form');
 export const addFormElement = document.querySelector('.popup__add-form');
-export const profileImageInput = document.querySelector('.popup__input_content_profile-image');
 export const changeImageButton = document.querySelector('.profile__button_type_image');
 export const avatarFormElement = document.querySelector('.popup__profile-image');
 

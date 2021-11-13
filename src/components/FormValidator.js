@@ -1,7 +1,8 @@
 export default class FormValidator {
   constructor(settings, form) {
     this._settings = settings;
-    this._form = form
+    this._form = form;
+    this._submitButton = this._form.querySelector(settings.submitButtonSelector);
   }
 
   _showError = (input, errorMessage) => {
@@ -35,16 +36,14 @@ export default class FormValidator {
   };
 
   _toggleButtonState = () => {
-    const { inactiveButtonClass, submitButtonSelector } = this._settings;
-    const button = this._form.querySelector(submitButtonSelector);
-
+    const { inactiveButtonClass } = this._settings;
     if (this._hasInvalidInput()) {
-      button.classList.add(inactiveButtonClass);
-      button.setAttribute('disabled', true);
+      this._submitButton.classList.add(inactiveButtonClass);
+      this._submitButton.setAttribute('disabled', true);
     }
     else {
-      button.classList.remove(inactiveButtonClass);
-      button.removeAttribute('disabled');
+      this._submitButton.classList.remove(inactiveButtonClass);
+      this._submitButton.removeAttribute('disabled');
     }
   }
 

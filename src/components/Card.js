@@ -22,17 +22,21 @@ export default class Card {
 
   generateCard = () => {
     this._element = this._getTemplate();
-    const cardImage = this._element.querySelector('.card__image');
-    const cardTitle = this._element.querySelector('.card__title');
-    cardTitle.textContent = this._name;
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__title');
+    this._likeButton = this._element.querySelector('.card__like-button');
+    this._likeCounter = this._element.querySelector('.card__likes-count');
+    this._deleteButton = this._element.querySelector('.card__delete-button');
+    this._cardTitle.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._setListeners();
+
     if (this._ownerId !== this._userId) {
-      this._element.querySelector('.card__delete-button').style.display = 'none'
+      this._deleteButton.style.display = 'none'
     }
 
-    this._element.querySelector('.card__likes-count').textContent = this._likes.length;
+    this._likeCounter.textContent = this._likes.length;
     if (this.isLiked()) {
       this.likeCard(this._likes)
     }
@@ -41,14 +45,11 @@ export default class Card {
   }
 
   _setListeners() {
-    this._element.querySelector('.card__image')
-      .addEventListener('click', () => this._handleCardClick());
+    this._cardImage.addEventListener('click', () => this._handleCardClick());
 
-    this._element.querySelector('.card__like-button')
-      .addEventListener('click', () => this._handleCardLike(this._id));
+    this._likeButton.addEventListener('click', () => this._handleCardLike(this._id));
 
-    this._element.querySelector('.card__delete-button')
-      .addEventListener('click', () => this._handleDeleteCard(this._id));
+    this._deleteButton.addEventListener('click', () => this._handleDeleteCard(this._id));
   }
 
   isLiked() {
@@ -57,9 +58,8 @@ export default class Card {
 
   likeCard(newLikes) {
     this._likes = newLikes;
-    this._element.querySelector('.card__likes-count').textContent = this._likes.length;
-    this._element.querySelector('.card__like-button')
-      .classList.toggle('card__like-button_state_active');
+    this._likeCounter.textContent = this._likes.length;
+    this._likeButton.classList.toggle('card__like-button_state_active');
   }
 
   deleteCard() {

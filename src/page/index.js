@@ -6,9 +6,8 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithSubmit } from '../components/PopupWithSubmit.js';
 import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { addButton, editButton, settings, nameInput, jobInput, editFormElement, addFormElement, avatarFormElement, profileImageInput, changeImageButton } from '../utils/constants.js';
+import { addButton, editButton, settings, nameInput, jobInput, editFormElement, addFormElement, avatarFormElement, changeImageButton } from '../utils/constants.js';
 import { api } from "../components/Api.js";
-import { renderLoading } from "../utils/utils.js";
 let userId
 
 Promise.all([api.getInitialCards(), api.getUserinfo()])
@@ -17,7 +16,9 @@ Promise.all([api.getInitialCards(), api.getUserinfo()])
     userId = info._id;
     cardList.renderItems(cards);
     userInfo.setUserInfo({ name: info.name, about: info.about, avatar: info.avatar })
-    profileImageInput.value = info.avatar;
+  })
+  .catch((error) => {
+    console.log(error);
   })
 
 const userInfo = new UserInfo('.profile__name', '.profile__description', '.profile__image');
@@ -26,14 +27,16 @@ const editPopup = new PopupWithForm('.popup_type_edit',
   (info) => {
     api.updateUserInfo(info)
       .then(res => {
-        console.log('res', res)
+        //console.log('res', res)
         userInfo.updateUserInfo({ name: res.name, about: res.about })
-
+        editPopup.close();
+      })
+      .catch((error) => {
+        console.log(error);
       })
       .finally(() => {
-        renderLoading();
-        editPopup.close();
-      });
+        editPopup.renderLoading(false, 'Save');
+      })
   }
 );
 
@@ -61,6 +64,9 @@ function createCard(data) {
             newCard.deleteCard()
             confirmDelete.close();
           })
+          .catch((error) => {
+            console.log(error);
+          })
       })
     },
     handleCardLike: (id) => {
@@ -70,11 +76,16 @@ function createCard(data) {
           .then(res => {
             newCard.likeCard(res.likes)
           })
+          .catch((error) => {
+            console.log(error);
+          })
       } else {
         api.likeCard(id)
           .then(res => {
             newCard.likeCard(res.likes)
-            console.log(res)
+          })
+          .catch((error) => {
+            console.log(error);
           })
       }
     }
@@ -96,10 +107,13 @@ const addPopup = new PopupWithForm('.popup_type_add', (data) => {
   api.createCard(data)
     .then(res => {
       cardList.addItem(createCard(res));
+      addPopup.close();
+    })
+    .catch((error) => {
+      console.log(error);
     })
     .finally(() => {
-      renderLoading();
-      addPopup.close();
+      addPopup.renderLoading(false, 'Create');
     });
 });
 
@@ -115,18 +129,21 @@ const confirmDelete = new PopupWithSubmit('.popup_type_delete');
 const changeImage = new PopupWithForm('.popup_type_avatar', (data) => {
   api.updateProfilePicture(data)
     .then(res => {
-      // console.log(res)
       userInfo.updateImage(res);
+      changeImage.close();
+    })
+    .catch((error) => {
+      console.log(error);
     })
     .finally(() => {
-      renderLoading();
-      changeImage.close()
+      changeImage.renderLoading(false, 'Save');
     });
 })
 
 const avatarValidator = new FormValidator(settings, avatarFormElement);
 
 changeImageButton.addEventListener('click', () => {
+  avatarValidator.resetValidation();
   changeImage.open()
 })
 
@@ -139,3 +156,4 @@ changeImage.setEventListeners();
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarValidator.enableValidation();
+

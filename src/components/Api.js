@@ -1,7 +1,6 @@
 const customFetch = (baseUrl, headers) =>
   fetch(baseUrl, headers)
     .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
-    .catch(res => console.log(res.statusText))
 
 class Api {
   constructor({ baseUrl, headers }) {
